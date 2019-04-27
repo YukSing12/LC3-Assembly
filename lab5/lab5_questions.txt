@@ -1,0 +1,35 @@
+1. How many instructions are there in "lab5.bin"? And how many are operate instructions?
+There are three instructions in "lab5.bin" and there are two operate instructions.
+
+
+2. What do commands "continue" and "step" do in LC3 simulator?
+"continue" is the command to run our program.
+"step" is the command to execute one step (into subroutine/trap) which is different 
+from "next" which execute one step (into subroutine/trap).
+
+3. What is the total number of commands in "lc3sim"? 
+There are sixteen commands in "lc3sim" and they are as follows,
+file <file>           -- file load (also sets PC to start of file)
+
+break ...             -- breakpoint management
+
+continue              -- continue execution
+finish                -- execute to end of current subroutine
+next                  -- execute next instruction (full subroutine/trap)
+step                  -- execute one step (into subroutine/trap)
+
+list ...              -- list instructions at the PC, an address, a label
+dump ...              -- dump memory at the PC, an address, a label
+translate <addr>      -- show the value of a label and print the contents
+printregs             -- print registers and current instruction
+
+memory <addr> <val>   -- set the value held in a memory location
+register <reg> <val>  -- set a register to a value
+
+execute <file name>   -- execute a script file
+
+reset                 -- reset LC-3 and reload last file
+
+quit                  -- quit the simulator
+
+help                  -- print this help

@@ -1,0 +1,39 @@
+1. How many errors have you found in the assembly code? List all of them.
+There are 8 errors found in first pass.
+
+When we translating *.asm to *.obj, there are 8 errors found by the assemblor.
+
+line 14: illegal operands for missing opcode (.ORIG)
+so it will also said that 
+line 15: instruction appears before .ORIG
+
+line 16: constant outside of allowed range, becasue the address PCoffset has only 9 bit and x3010 is 16 bit.
+
+line 18: illegal operands for ADD, because there are two ',' between DR and SR1
+
+line 29: constant outside of allowed range, becasue the address PCoffset has only 9 bit and x300F is 16 bit.
+
+line 31: label OUTERLOOP has already appeared becasue the order of BR is wrong. The correct order of BR is BRzp.
+
+line 34: constant outside of allowed range, becasue the address PCoffset has only 9 bit and x3011 is 16 bit.
+
+line 43: no .END directive found.
+
+2. Please describe the factorial algorithm in pseudo code.
+
+int factorial(int x)
+{
+    for(i=X-1;i>0;i--)
+    {
+        sum=0;
+        for(j=i;j>0;j--)
+        {
+            sum+=x;
+        }
+        result=sum;
+    }
+    return result;
+}
+
+As a result, we can calculate the result of x! .
+

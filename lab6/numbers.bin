@@ -1,0 +1,11 @@
+0011 0001 0011 0010 ; specify where the numbers will be stored (x3132)
+0000 0000 0000 0001 ; addr:x3132, hex:x0001, dec:1 
+1111 1111 1000 0000 ; addr:x3133, hex:xFF80, dec:-128 
+0000 0000 0000 0100 ; addr:x3134, hex:x0004, dec:4 
+1111 1111 1111 1000 ; addr:x3135, hex:xFFF8, dec:-8
+0000 0000 0010 0000 ; addr:x3136, hex:x0020, dec:32
+0000 0010 0000 0000 ; addr:x3137, hex:x0200, dec:512
+1111 1111 1100 0000 ; addr:x3138, hex:xFFC0, dec:-64
+1111 1111 1111 1110 ; addr:x3139, hex:xFFFE, dec:-2
+1111 1111 0000 0000 ; addr:x313A, hex:xFF00, dec:-256
+0000 0000 0001 0000 ; addr:x313B, hex:x0010, dec:16

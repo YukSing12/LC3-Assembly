@@ -1,0 +1,8 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	OUTERLOOP         3002
+//	INNERLOOP         3003
+//	BRpz              3009
+//	INPUT             300B
