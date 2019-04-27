@@ -1,2 +1,5 @@
 #no .pdf files
 *.pdf
+
+#no .a files
+*.a
