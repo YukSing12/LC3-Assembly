@@ -1,0 +1,5 @@
+file onetest.obj
+file lab8.obj
+printregs
+continue
+quit
