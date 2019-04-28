@@ -2,16 +2,16 @@
 // Scope level 0:
 //	Symbol Name       Page Address
 //	----------------  ------------
-//	FORROWS           3001
-//	getch             3007
-//	MUL               300F
-//	BITS              3017
-//	PRINTST           3019
-//	PRINTSP           301C
-//	CON               301E
-//	STOP              3024
-//	START             3025
-//	SPACE             3027
-//	INPUT             3029
-//	FONT_DATA         302A
+//	FORROWS           3002
+//	GETCHAR           3008
+//	MUL               3010
+//	FORCOLS           3018
+//	PRINTST           301A
+//	PRINTSP           301D
+//	COM               301F
+//	STOP              3023
+//	STAR              3024
+//	SPACE             3026
+//	INPUT             3028
+//	FONT_DATA         3029
 

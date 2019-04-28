@@ -1,65 +1,86 @@
+; This program will print the FONT from the input.asm.
+; Input characters must start at x5000 and end up with NUL
 
-;Register:
-;R1: Store the value form INPUT
+; This program primarily uses registers in the following manner:
+;R0: Store the character which will be print out.
+;R1: Store the character form INPUT
 ;R2: Store the iterator of mul times and play a role as temp
 ;R3: Store the address of INPUT(x5000)
-;R4: Store the address of char
-;R5: Store the iterator of lines of output
-;R6: Store the iterator of bit
+;R4: Store the address of FONT
+;R5: Store the iterator of lines
+;R6: Store the iterator of bits
 
+; This program primarily uses labels in the following manner:
+;FORROWS: The address of for-rows-loop which will continue to go to the next row(line)
+;FORCOLS: The address of for-cols-loop which will continue to go to the next col(bit)
+;MUL:     The address of multiplication
+;GETCHAR  The address of while-loop which will continue to get next charactre
+;PRINTST  The address of printing out star('*')
+;PRINTSP  The address of printing out space(' ')
+;COM      The address of common operation after printing
+;STOP     The address of HALT
 
 ;start
         .ORIG x3000
-
-;for-rows
-        ADD R5,R5,#15       ;rows counter
+	
+;for-rows-loop
+        AND R5,R5,x0        ;clear
+        ADD R5,R5,#15       ;rows_iterator
 FORROWS AND R0,R0,x0
-        ADD R0,R0,X0A
-        OUT
-        ADD R5,R5,#-1
-        BRn STOP
+        ADD R0,R0,X0A       
+        OUT                 ;print '\r' and then go to the next line(row)
+        ADD R5,R5,#-1       ;go to next row
+        BRn STOP            ; if row_iterator less than zero , than stop the loop
         LD R3,INPUT
-;while loop      
-getch   LDR R1,R3,#0        ;while INPUT isn't NULL, then continue ,else stop output
-        BRz FORROWS 
 
-;calculate the first address of char
+;while-loop
+;while char isn't NULL, then goes on. 
+GETCHAR LDR R1,R3,#0        
+        BRz FORROWS         ;while INPUT isn't NULL, then continue ,else stop output
+
+;calculate the address of char,
+;where address = FONT_DATA + 16 * char + 15 - R5
         LEA R4,FONT_DATA
         NOT R2,R5
         ADD R4,R4,#15
         ADD R4,R4,R2
-        AND R2,R2,#0        ;clear R2
-        ADD R2,R2,#15       ;R4+=R1*16
-MUL     ADD R4,R4,R1        ;calculate the first address
-                            ;from FONT_DATA
+        AND R2,R2,#0        
+        ADD R2,R2,#15       
+MUL     ADD R4,R4,R1        
         ADD R2,R2,#-1
         BRzp MUL
-;for-cols
-        AND R6,R6,#0
-        ADD R6,R6,#8        ;        
+
+;for-cols-loop
+        AND R6,R6,#0        ;clear
+        ADD R6,R6,#9        ;cols_iterator
         LDR R2,R4,#0
-        BRn PRINTST
+        BRn PRINTST         ;print '*'
+        BRzp PRINTSP        ;print ' '
+
+FORCOLS ADD R2,R2,R2        ;R2 << 1 and use the MSB of R2 to judge whether print star or space
         BRzp PRINTSP
-BITS    ADD R2,R2,R2
-        BRzp PRINTSP
-PRINTST LEA R0,START
+
+PRINTST LEA R0,STAR
         PUTS
-        BRnzp CON
+        BRnzp COM
+
 PRINTSP LEA R0,SPACE
         PUTS
-CON     ADD R6,R6,#-1       ; 
-        BRnp BITS
-        LEA R0,SPACE
-        PUTS
-        ADD R3,R3,#1       ;
 
-        BRnzp getch
+COM     ADD R6,R6,#-1       
+        BRnp FORCOLS        ;go to next col
+        ADD R3,R3,#1        
+
+        BRnzp GETCHAR       ;get next char
+
 ;stop
 STOP    HALT
 
-START .STRINGZ "1"
-SPACE .STRINGZ "0"
+STAR  .STRINGZ "*"
+SPACE .STRINGZ " "
+
 INPUT .FILL x5000
+
 FONT_DATA .FILL x0000  ; Char: , Dec: 0, Hex:0x00
           .FILL x0000
           .FILL x0000
