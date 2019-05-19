@@ -1,0 +1,24 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	GET               3003
+//	ECHO              3006
+//	CHECK1            3009
+//	CHECK2            300F
+//	CHECK3            3015
+//	FINISH            3019
+//	STOP              301C
+//	PUSH              301E
+//	POP               3024
+//	FLOW              302A
+//	TOP               302C
+//	MAX               302D
+//	KBSR              302E
+//	KBDR              302F
+//	DSR               3030
+//	DDR               3031
+//	NEWLINE           3032
+//	START             3033
+//	CLOSE             3034
+
