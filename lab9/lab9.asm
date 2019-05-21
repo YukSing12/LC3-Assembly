@@ -48,16 +48,12 @@ CHECK1  LD R2,START    ;Check weather the character is '(', if it is, do push-in
         ADD R3,R0,R2
         BRnp CHECK2
         JSR PUSH
-        ADD R4,R4,#0
-        BRnp STOP
 
 ;Recieve ')'           ;Check weather the character is ')', if it is, do pop-out.
 CHECK2  LD R2,CLOSE
         ADD R3,R0,R2
         BRnp CHECK3
         JSR POP
-        ADD R4,R4,#0
-        BRnp STOP
 
 ;Recieve newline       ;Check weather the character is '\r', if it is, stop to recieve
                        ;character from keyboard.
@@ -67,7 +63,9 @@ CHECK3  LD R2,NEWLINE
         BRnzp GET
    
 ;stop                  ;Before halt and stop the program, to store the result in R5.
-FINISH  LD R2,TOP
+FINISH  ADD R4,R4,#0
+        BRnp STOP
+        LD R2,TOP
         ADD R2,R6,R2
         BRz #1
 STOP    ADD R5,R5,#-1
@@ -87,7 +85,7 @@ POP     LD R2,TOP      ;Pop-out function
         ADD R6,R6,#1
         RET
 
-FLOW    ADD R4,R4,#-1
+FLOW    ADD R4,R4,#1
         RET 
 
 TOP     .FILL xb000    ; - x5000

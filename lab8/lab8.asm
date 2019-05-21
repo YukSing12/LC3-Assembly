@@ -22,7 +22,7 @@
 
 ;start
         .ORIG x3000
-	
+
 ;for-rows-loop
         AND R5,R5,x0        ;clear
         ADD R5,R5,#15       ;rows_iterator
