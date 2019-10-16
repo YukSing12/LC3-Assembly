@@ -1,5 +1,6 @@
-#no .pdf files
-*.pdf
-
 #no .a files
 *.a
+
+#no .png .jpg
+*.png
+*.jpg
